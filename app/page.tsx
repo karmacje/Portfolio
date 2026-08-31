@@ -1,69 +1,26 @@
-import Image from "next/image";
+import MagneticLink from "@/components/MagneticLink";
+
+const projects = [
+  { number: "01", title: "NMMC Queuing System", description: "A clearer way to manage public service queues, designed around speed and less waiting.", tags: ["Next.js", "Prisma", "MySQL"] },
+  { number: "02", title: "Bantay Baboy", description: "An IoT monitoring experience that gives livestock caretakers a clearer view of what needs attention.", tags: ["React", "Supabase", "IoT"] },
+  { number: "03", title: "Artificial Greenery", description: "A visual showcase site for discovering low-maintenance greenery that brings warmth into a space.", tags: ["Web Design", "Next.js", "Responsive UI"] },
+];
+
+const stackGroups = [
+  { label: "Frontend", items: ["Next.js", "React", "TypeScript", "Tailwind CSS"] },
+  { label: "Backend & data", items: ["Prisma", "MySQL", "Supabase", "REST APIs"] },
+  { label: "Systems", items: ["Networking", "Cybersecurity", "Cisco tools"] },
+];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+    <main>
+      <nav className="site-nav" aria-label="Main navigation"><a className="wordmark" href="#intro" aria-label="Karley home">K<span>.</span></a><div className="nav-links"><a href="#background">Background</a><a href="#projects">Projects</a><a href="#stack">Stack</a><a href="#contact">Contact</a></div><a className="nav-status" href="mailto:hello@karley.dev"><span className="status-dot" /> Available for work</a></nav>
+      <section className="hero section-shell" id="intro"><div className="hero-kicker"><span>Portfolio / 2026</span><span>Based in the Philippines</span></div><div className="hero-content"><p className="eyebrow reveal-one">Hello, I&apos;m Karley.</p><h1 className="hero-title reveal-two">Digital work with<br /><em>human intent.</em></h1><div className="hero-bottom reveal-three"><p className="hero-description">Full-stack web developer building thoughtful interfaces, useful systems, and a safer digital world.</p><div className="hero-actions"><MagneticLink href="#projects" variant="solid">View projects <span>↘</span></MagneticLink><MagneticLink href="#contact" variant="outline">Contact me <span>↗</span></MagneticLink></div></div></div><a className="scroll-cue" href="#background"><span>Scroll to explore</span><span>↓</span></a></section>
+      <section className="section-shell split-section" id="background"><div className="section-label"><span>01</span><span>Background</span></div><div className="section-body"><h2>I like making complex things feel <em>clear.</em></h2><p className="lead-copy">My work sits at the intersection of design, engineering, and the systems that keep people connected. I care about the small decisions that make technology easier to trust.</p><div className="facts-grid"><div><span className="fact-label">Education</span><strong>BS Information Technology</strong><span>Systems and application development</span></div><div><span className="fact-label">Focus</span><strong>Full-stack development</strong><span>Networking &amp; cybersecurity</span></div><div><span className="fact-label">Experience</span><strong>NMMC Queuing System</strong><span>Internship / product development</span></div></div><div className="certifications"><span className="fact-label">Certifications</span><span className="cert-chip">Cisco CyberOps Associate</span><span className="cert-chip">Ethical Hacking</span></div></div></section>
+      <section className="section-shell projects-section" id="projects"><div className="section-label"><span>02</span><span>Selected projects</span></div><div className="section-body"><div className="section-heading-row"><h2>Made to be <em>useful.</em></h2><span className="project-count">03 / 03</span></div><div className="projects-grid">{projects.map((project) => <article className="project-card" key={project.number}><div className="project-number">{project.number}</div><div className="project-card-main"><h3>{project.title}</h3><p>{project.description}</p><div className="tag-list">{project.tags.map((tag) => <span key={tag}>{tag}</span>)}</div></div><a className="project-arrow" href="#contact" aria-label={`Ask about ${project.title}`}>↗</a></article>)}</div></div></section>
+      <section className="section-shell split-section stack-section" id="stack"><div className="section-label"><span>03</span><span>Toolbox</span></div><div className="section-body"><h2>Curious by default.<br /><em>Precise by practice.</em></h2><div className="stack-list">{stackGroups.map((group) => <div className="stack-row" key={group.label}><span>{group.label}</span><div>{group.items.map((item) => <span className="stack-chip" key={item}>{item}</span>)}</div></div>)}</div></div></section>
+      <section className="contact-section" id="contact"><div className="section-shell contact-inner"><div className="section-label"><span>04</span><span>Contact</span></div><div className="contact-copy"><p className="eyebrow">Have a good problem?</p><h2>Let&apos;s make<br /><em>something matter.</em></h2><MagneticLink href="mailto:hello@karley.dev" variant="solid">hello@karley.dev <span>↗</span></MagneticLink></div><div className="contact-footer"><span>Karley / Portfolio</span><div><a href="https://github.com" target="_blank" rel="noreferrer">GitHub</a><a href="https://linkedin.com" target="_blank" rel="noreferrer">LinkedIn</a><a href="https://credly.com" target="_blank" rel="noreferrer">Credly</a></div><span>© 2026</span></div></div></section>
+    </main>
   );
 }
