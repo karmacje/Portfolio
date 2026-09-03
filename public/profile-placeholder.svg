@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5" role="img" aria-labelledby="title desc">
+  <title id="title">Profile portrait placeholder</title>
+  <desc id="desc">A restrained placeholder for Karley's half-body profile portrait.</desc>
+  <rect width="4" height="5" fill="#dfe2db"/>
+  <circle cx="2" cy="1.65" r="0.62" fill="#68716d"/>
+  <path d="M.72 4.72c.18-1.35.66-2.12 1.28-2.12s1.1.77 1.28 2.12" fill="#1d2623"/>
+  <path d="M1.35 1.55c.08-.61.32-.95.65-.95s.57.34.65.95" fill="#1d2623"/>
+  <path d="M1.18 4.72c.09-.83.37-1.45.82-1.82.45.37.73.99.82 1.82" fill="#d66a43" opacity=".8"/>
+</svg>
