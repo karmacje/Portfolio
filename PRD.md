@@ -34,7 +34,7 @@ Functional & design requirements — minimal, glassmorphic personal portfolio si
 | ID | Feature | User Story | Expected Behavior/Outcome |
 |---|---|---|---|
 | PRJ-FR001 | Projects Showcase | As a visitor, I want to browse featured projects, so I can evaluate the developer's actual work. | Section displays project cards (glass-style) for featured work — e.g. NMMC Queuing System, Bantay Baboy IoT monitoring app, artificial greenery showcase site — each with a title, short description, and tech tags. |
-| PRJ-FR002 | Project Links | As a visitor, I want to view a live demo or source code for a project I'm interested in, so I can explore it further. | Each project card includes a link to a live demo and/or repository where available, opening in a new tab. |
+| PRJ-FR002 | Project Links | As a visitor, I want to explore a project even when it was deployed privately, so I can understand the work without needing public access. | Each project card conditionally shows live demo and/or repository links when available, opening in a new tab. When a project has no public deployment, it shows a "Case Study" or "Details" link that opens the project's context, contribution, technology, and deployment note, including a short explanation when the system is internal or client-only. |
 | PRJ-FR003 | Project Card Hover State | As a visitor, I want project cards to respond when I interact with them, so browsing feels interactive. | Hovering a project card triggers a subtle lift/glow and the cursor-reactive effect defined in DS-FR004, consistent with the rest of the site. |
 
 ## 5. Tech Stack Section
