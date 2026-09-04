@@ -1,6 +1,7 @@
+"use client";
+
 import MagneticLink from "@/components/MagneticLink";
-import type { LucideIcon } from "lucide-react";
-import { ArrowDownRight, ArrowUpRight } from "lucide-react";
+import { ArrowDownRight, ArrowUpRight, Leaf, PiggyBank, Ticket } from "lucide-react";
 
 export type CaseStudy = {
   context: string;
@@ -12,25 +13,56 @@ export type CaseStudy = {
 
 export type Project = {
   number: string;
+  suit: string;
   title: string;
   description: string;
   tags: string[];
   liveUrl?: string;
   repoUrl?: string;
   caseStudy?: CaseStudy;
-  icon?: LucideIcon;
+  icon?: "ticket" | "piggybank" | "leaf";
 };
 
 type ProjectCardProps = {
   project: Project;
+  onHoldStart?: (event: React.PointerEvent<HTMLElement>) => void;
+  onHoldEnd?: (event: React.PointerEvent<HTMLElement>) => void;
+  onDragMove?: (event: React.PointerEvent<HTMLElement>) => void;
 };
 
-export default function ProjectCard({ project }: ProjectCardProps) {
+export default function ProjectCard({ project, onHoldStart, onHoldEnd, onDragMove }: ProjectCardProps) {
   const hasPublicLinks = project.liveUrl || project.repoUrl;
+  const ProjectIcon = project.icon === "ticket" ? Ticket : project.icon === "piggybank" ? PiggyBank : project.icon === "leaf" ? Leaf : null;
+  function handlePointerMove(event: React.PointerEvent<HTMLElement>) {
+    onDragMove?.(event);
+    if (event.pointerType === "touch") return;
+    const bounds = event.currentTarget.getBoundingClientRect();
+    const x = (event.clientX - bounds.left) / bounds.width - 0.5;
+    const y = (event.clientY - bounds.top) / bounds.height - 0.5;
+    event.currentTarget.style.setProperty("--card-tilt-x", `${x * 8}deg`);
+    event.currentTarget.style.setProperty("--card-tilt-y", `${y * -8}deg`);
+  }
+
+  function resetTilt(event: React.PointerEvent<HTMLElement>) {
+    event.currentTarget.style.setProperty("--card-tilt-x", "0deg");
+    event.currentTarget.style.setProperty("--card-tilt-y", "0deg");
+  }
+
+  function handleHoldStart(event: React.PointerEvent<HTMLElement>) {
+    if (event.target instanceof Element && event.target.closest("a, button, summary")) return;
+    event.preventDefault();
+    event.currentTarget.setPointerCapture(event.pointerId);
+    onHoldStart?.(event);
+  }
+
+  function handleHoldEnd(event: React.PointerEvent<HTMLElement>) {
+    if (event.currentTarget.hasPointerCapture(event.pointerId)) event.currentTarget.releasePointerCapture(event.pointerId);
+    onHoldEnd?.(event);
+  }
 
   return (
-    <article className="project-card">
-      <div className="project-number">{project.number}</div>
+    <article className="project-card" onPointerDown={handleHoldStart} onPointerUp={handleHoldEnd} onPointerCancel={handleHoldEnd} onPointerMove={handlePointerMove} onPointerLeave={resetTilt}>
+      <div className="project-number"><span>{project.number}</span><span className="project-suit" aria-hidden="true">{project.suit}</span></div>
       <div className="project-card-main">
         <h3>{project.title}</h3>
         <p>{project.description}</p>
@@ -56,7 +88,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           </details>
         )}
       </div>
-      {project.icon && <project.icon className="project-mark" aria-hidden="true" size={52} strokeWidth={1.35} />}
+      {ProjectIcon && <ProjectIcon className="project-mark" aria-hidden="true" size={52} strokeWidth={1.35} />}
       {!hasPublicLinks && !project.caseStudy && <a className="project-arrow" href="#contact" aria-label={`Ask about ${project.title}`}><ArrowUpRight aria-hidden="true" size={22} /></a>}
     </article>
   );

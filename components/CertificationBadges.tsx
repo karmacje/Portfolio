@@ -62,9 +62,10 @@ export default function CertificationBadges() {
     <div className="certification-badges">
       {certifications.map(({ name, detail, icon: Icon }) => (
         <button className={`certification-badge${activeCertification === name ? " is-active" : ""}`} key={name} type="button" onClick={(event) => activateGlow(event, name)} aria-label={`${isAlternateTheme ? "Switch to light theme with" : "Switch to dark theme with"} ${name} certification`}>
-          <span className="certification-badge-icon"><Icon aria-hidden="true" size={24} strokeWidth={1.5} /></span>
-          <span className="certification-badge-copy"><strong>{name}</strong><span>{detail}</span></span>
-          <span className="certification-badge-mark" aria-hidden="true">+</span>
+          <span className="certification-badge-inner">
+            <span className="certification-badge-face certification-badge-front"><span className="certification-badge-icon"><Icon aria-hidden="true" size={24} strokeWidth={1.5} /></span><span className="certification-badge-copy"><strong>{name}</strong><span>{detail}</span></span><span className="certification-badge-mark" aria-hidden="true">+</span></span>
+            <span className="certification-badge-face certification-badge-back" aria-hidden="true"><span className="certification-card-suit">{name === "Ethical Hacking" ? "♦" : "♠"}</span><strong>Verified skill</strong><span>{detail}</span></span>
+          </span>
         </button>
       ))}
     </div>
