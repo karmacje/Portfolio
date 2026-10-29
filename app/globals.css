@@ -173,6 +173,19 @@ html.alternate-theme .profile-card-caption { color: var(--paper); }
 
 .hero-title em { white-space: nowrap; }
 .hero-rotating-word { display: inline-block; overflow: visible; transition: width .9s cubic-bezier(.22, 1.2, .36, 1); vertical-align: bottom; }
+
+/* The liquid navbar owns its glass surface; the fixed header only positions it. */
+.site-nav { background: transparent; border: 0; box-shadow: none; gap: 12px; padding: 0; }
+.portfolio-navbar { flex: 1; justify-content: center; min-width: 0; }
+.nav-cv { border: 1px solid var(--line); border-radius: 999px; font-size: 12px; padding: 12px 14px; transition: color .2s ease, border-color .2s ease; }
+.nav-cv:hover { border-color: var(--accent); color: var(--accent); }
+.nav-actions { flex-shrink: 0; }
+
+@media (max-width: 700px) {
+	.site-nav { gap: 6px; }
+	.nav-cv { font-size: 11px; padding: 10px 12px; }
+	.nav-status { display: none; }
+}
 .hero-word-sizers { height: 0; left: 0; overflow: hidden; position: absolute; top: 0; visibility: hidden; white-space: nowrap; width: 0; }
 .hero-word-sizers span { display: inline-block; }
 .hero-rotating-word > span:first-child { display: inline-block; white-space: nowrap; }
@@ -256,4 +269,3 @@ html.alternate-theme .profile-card-caption { color: var(--paper); }
 @media (prefers-reduced-motion: reduce) {
 	.project-deck .project-card { transition: none; }
 }
-
