@@ -2,6 +2,7 @@
 
 import MagneticLink from "@/components/MagneticLink";
 import { ArrowDownRight, ArrowUpRight, Leaf, PiggyBank, Ticket } from "lucide-react";
+import { useState } from "react";
 
 export type CaseStudy = {
   context: string;
@@ -31,6 +32,7 @@ type ProjectCardProps = {
 };
 
 export default function ProjectCard({ project, onHoldStart, onHoldEnd, onDragMove }: ProjectCardProps) {
+  const [isCaseStudyOpen, setIsCaseStudyOpen] = useState(false);
   const hasPublicLinks = project.liveUrl || project.repoUrl;
   const ProjectIcon = project.icon === "ticket" ? Ticket : project.icon === "piggybank" ? PiggyBank : project.icon === "leaf" ? Leaf : null;
   function handlePointerMove(event: React.PointerEvent<HTMLElement>) {
@@ -61,23 +63,36 @@ export default function ProjectCard({ project, onHoldStart, onHoldEnd, onDragMov
   }
 
   return (
-    <article className="project-card" onPointerDown={handleHoldStart} onPointerUp={handleHoldEnd} onPointerCancel={handleHoldEnd} onPointerMove={handlePointerMove} onPointerLeave={resetTilt}>
-      <div className="project-number"><span>{project.number}</span><span className="project-suit" aria-hidden="true">{project.suit}</span></div>
-      <div className="project-card-main">
-        <h3>{project.title}</h3>
-        <p>{project.description}</p>
-        <div className="tag-list">
-          {project.tags.map((tag) => <span key={tag}>{tag}</span>)}
-        </div>
-        {hasPublicLinks && (
-          <div className="project-links">
-            {project.liveUrl && <MagneticLink href={project.liveUrl} target="_blank" rel="noreferrer" variant="outline">Live demo <ArrowUpRight className="button-icon" aria-hidden="true" size={14} /></MagneticLink>}
-            {project.repoUrl && <MagneticLink href={project.repoUrl} target="_blank" rel="noreferrer" variant="outline">Repository <ArrowUpRight className="button-icon" aria-hidden="true" size={14} /></MagneticLink>}
+    <article className={`project-card${isCaseStudyOpen ? " is-case-study-open" : ""}`} onPointerDown={handleHoldStart} onPointerUp={handleHoldEnd} onPointerCancel={handleHoldEnd} onPointerMove={handlePointerMove} onPointerLeave={resetTilt}>
+      <div className="project-card-inner">
+        <div className="project-card-face project-card-front">
+          <div className="project-number"><span>{project.number}</span><span className="project-suit" aria-hidden="true">{project.suit}</span></div>
+          <div className="project-card-main">
+            <h3>{project.title}</h3>
+            <p>{project.description}</p>
+            <div className="tag-list">
+              {project.tags.map((tag) => <span key={tag}>{tag}</span>)}
+            </div>
+            {hasPublicLinks && (
+              <div className="project-links">
+                {project.liveUrl && <MagneticLink href={project.liveUrl} target="_blank" rel="noreferrer" variant="outline">Live demo <ArrowUpRight className="button-icon" aria-hidden="true" size={14} /></MagneticLink>}
+                {project.repoUrl && <MagneticLink href={project.repoUrl} target="_blank" rel="noreferrer" variant="outline">Repository <ArrowUpRight className="button-icon" aria-hidden="true" size={14} /></MagneticLink>}
+              </div>
+            )}
+            {project.caseStudy && (
+              <button className="case-study-trigger" type="button" aria-expanded={isCaseStudyOpen} onClick={() => setIsCaseStudyOpen(true)}>
+                View Case Study <ArrowDownRight className="button-icon" aria-hidden="true" size={14} />
+              </button>
+            )}
           </div>
-        )}
+          {ProjectIcon && <ProjectIcon className="project-mark" aria-hidden="true" size={52} strokeWidth={1.35} />}
+          {!hasPublicLinks && !project.caseStudy && <a className="project-arrow" href="#contact" aria-label={`Ask about ${project.title}`}><ArrowUpRight aria-hidden="true" size={22} /></a>}
+        </div>
         {project.caseStudy && (
-          <details className="case-study">
-            <summary className="case-study-trigger">View Case Study <ArrowDownRight className="button-icon" aria-hidden="true" size={14} /></summary>
+          <div className="project-card-face project-card-back" aria-hidden={!isCaseStudyOpen}>
+            <button className="case-study-back-trigger" type="button" aria-label="Close case study" onClick={() => setIsCaseStudyOpen(false)}>
+              <ArrowDownRight className="button-icon" aria-hidden="true" size={16} />
+            </button>
             <div className="case-study-content">
               <div><span>Context</span><p>{project.caseStudy.context}</p></div>
               <div><span>Problem</span><p>{project.caseStudy.problem}</p></div>
@@ -85,11 +100,9 @@ export default function ProjectCard({ project, onHoldStart, onHoldEnd, onDragMov
               <div><span>Tech stack</span><div className="case-study-stack">{project.caseStudy.stack.map((item) => <span key={item}>{item}</span>)}</div></div>
               <div><span>Deployment</span><p>{project.caseStudy.deploymentNote}</p></div>
             </div>
-          </details>
+          </div>
         )}
       </div>
-      {ProjectIcon && <ProjectIcon className="project-mark" aria-hidden="true" size={52} strokeWidth={1.35} />}
-      {!hasPublicLinks && !project.caseStudy && <a className="project-arrow" href="#contact" aria-label={`Ask about ${project.title}`}><ArrowUpRight aria-hidden="true" size={22} /></a>}
     </article>
   );
 }
