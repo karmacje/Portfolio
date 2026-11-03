@@ -5,26 +5,26 @@ PASS. Task 4 validation completed without source corrections.
 Report-only commit.
 
 ## Tests
-Captured terminal output below is UTF-8/ASCII-safe; non-ASCII terminal glyphs are represented with ASCII equivalents without mojibake.
+Captured terminal output below is recorded as UTF-8, preserving the terminal glyphs exactly.
 
-`pnpm install --frozen-lockfile`  - exit 0
+`pnpm install --frozen-lockfile` — exit 0
 ```text
 Lockfile is up to date, resolution step is skipped
 Already up to date
 
-   ||||||||||||||||||||||||||||||||||||||||||||
-   |                                          |
-   ->   Update available! 10.29.1 -> 12.16.1.   ->
-   |   Changelog: https://pnpm.io/v/12.16.1.   |
-   |     To update, run: pnpm add -g pnpm     |
-   |                                          |
-   ||||||||||||||||||||||||||||||||||||||||||||
+   ╭──────────────────────────────────────────╮
+   │                                          │
+   │   Update available! 10.29.1 → 12.16.1.   │
+   │   Changelog: https://pnpm.io/v/12.16.1.   │
+   │     To update, run: pnpm add -g pnpm     │
+   │                                          │
+   ╰──────────────────────────────────────────╯
 
 
 Done in 7.8s using pnpm v10.29.1
 ```
 
-`pnpm lint`  - exit 1
+`pnpm lint` — exit 1
 ```text
 > projectx@0.1.0 lint E:\4th Year\PORTFOLIO\Personal\projectx
 > eslint
@@ -57,23 +57,23 @@ E:\4th Year\PORTFOLIO\Personal\projectx\.agents\skills\savethetokens\bin\uninsta
   4:14  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
   5:12  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
 
-| 21 problems (14 errors, 7 warnings)
+? 21 problems (14 errors, 7 warnings)
 
-|ELIFECYCLE| Command failed with exit code 1.
+?ELIFECYCLE? Command failed with exit code 1.
 ```
 
-`pnpm exec eslint app components`  - exit 0; no output.
+`pnpm exec eslint app components` — exit 0; no output.
 
-`pnpm build`  - exit 0
+`pnpm build` — exit 0
 ```text
 > projectx@0.1.0 build E:\4th Year\PORTFOLIO\Personal\projectx
 > next build
 
-| Next.js 16.3.3 (Turbopack)
-| Running next.config.ts took 123ms
+? Next.js 16.3.3 (Turbopack)
+? Running next.config.ts took 123ms
 
   Creating an optimized production build ...
-| Compiled successfully in 4.5s
+? Compiled successfully in 4.5s
   Running TypeScript ...
   Finished TypeScript in 6.7s ...
   Collecting page data using 3 workers ...
@@ -81,22 +81,22 @@ E:\4th Year\PORTFOLIO\Personal\projectx\.agents\skills\savethetokens\bin\uninsta
   Generating static pages using 3 workers (1/6) 
   Generating static pages using 3 workers (2/6) 
   Generating static pages using 3 workers (4/6) 
-| Generating static pages using 3 workers (6/6) in 1217ms
+? Generating static pages using 3 workers (6/6) in 1217ms
   Finalizing page optimization ...
 
 Route (app)
-| | /
-| | /_not-found
-| | /robots.txt
-| | /sitemap.xml
+? ? /
+? ? /_not-found
+? ? /robots.txt
+? ? /sitemap.xml
 
 
-|  (Static)  prerendered as static content
+?  (Static)  prerendered as static content
 ```
 
-`git diff --check`  - exit 0; output: `warning: in the working copy of 'skills-lock.json', LF will be replaced by CRLF the next time Git touches it`
+`git diff --check` — exit 0; output: `warning: in the working copy of 'skills-lock.json', LF will be replaced by CRLF the next time Git touches it`
 
-`git status --short --branch`  - exit 0
+`git status --short --branch` — exit 0
 ```text
 ## feature/performance-skeleton-reset
  M skills-lock.json
@@ -118,11 +118,11 @@ Route (app)
 ?? docs/superpowers/plans/
 ```
 
-`rg -n "analytics|gtag|googletagmanager|<script|script" app components`  - exit 0
+`rg -n "analytics|gtag|googletagmanager|<script|script" app components` — exit 0
 ```text
-app\page.tsx:7:  { number: "01", suit: "S", title: "NMMC Queuing System", description: "A ticket management system for hospital patients, designed to make queue operations clearer and waiting more manageable.", tags: ["Next.js", "Prisma", "MySQL"], caseStudy: { context: "Built during my internship at Northern Mindanao Medical Center to support patient queuing and ticket management in a hospital setting.", problem: "Hospital teams needed a clearer way to organize patient tickets and keep queue progress manageable during daily operations.", role: "I built the queuing system's web experience and supporting data flows, working across the interface, application logic, and database integration.", stack: ["Next.js", "Prisma", "MySQL"], deploymentNote: "The system is hosted on NMMC's internal server for hospital use. It is not publicly reachable due to healthcare facility policy." } },
-app\page.tsx:8:  { number: "02", suit: "C", title: "Bantay Baboy", description: "An IoT monitoring experience that gives livestock caretakers a clearer view of what needs attention.", tags: ["React", "Supabase", "IoT"] },
-app\page.tsx:9:  { number: "03", suit: "D", title: "Artificial Greenery", description: "A visual showcase site for discovering low-maintenance greenery that brings warmth into a space.", tags: ["Web Design", "Next.js", "Responsive UI"] },
+app\page.tsx:7:  { number: "01", suit: "?", title: "NMMC Queuing System", description: "A ticket management system for hospital patients, designed to make queue operations clearer and waiting more manageable.", tags: ["Next.js", "Prisma", "MySQL"], caseStudy: { context: "Built during my internship at Northern Mindanao Medical Center to support patient queuing and ticket management in a hospital setting.", problem: "Hospital teams needed a clearer way to organize patient tickets and keep queue progress manageable during daily operations.", role: "I built the queuing system's web experience and supporting data flows, working across the interface, application logic, and database integration.", stack: ["Next.js", "Prisma", "MySQL"], deploymentNote: "The system is hosted on NMMC's internal server for hospital use. It is not publicly reachable due to healthcare facility policy." } },
+app\page.tsx:8:  { number: "02", suit: "?", title: "Bantay Baboy", description: "An IoT monitoring experience that gives livestock caretakers a clearer view of what needs attention.", tags: ["React", "Supabase", "IoT"] },
+app\page.tsx:9:  { number: "03", suit: "?", title: "Artificial Greenery", description: "A visual showcase site for discovering low-maintenance greenery that brings warmth into a space.", tags: ["Web Design", "Next.js", "Responsive UI"] },
 app\page.tsx:44:              <p className="hero-description">Thoughtful interfaces, useful systems, and digital experiences made to feel clear, capable, and human.</p>
 app\layout.tsx:12:  description: "The portfolio of Karley, a full-stack web developer focused on thoughtful interfaces and useful systems.",
 components\ProjectList.tsx:13:  description: string;
