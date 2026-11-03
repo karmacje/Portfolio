@@ -85,10 +85,10 @@ E:\4th Year\PORTFOLIO\Personal\projectx\.agents\skills\savethetokens\bin\uninsta
   Finalizing page optimization ...
 
 Route (app)
-? ? /
-? ? /_not-found
-? ? /robots.txt
-? ? /sitemap.xml
+┌ ○ /
+├ ○ /_not-found
+├ ○ /robots.txt
+└ ○ /sitemap.xml
 
 
 ○  (Static)  prerendered as static content
