@@ -2,10 +2,14 @@
 Complete.
 
 ## Commits
-`chore: prune unused dependencies and assets` (final amended commit).
+`a7261cd` — chore: prune unused dependencies and assets; `874224e` — docs: record exact Task 3 test results.
 
 ## Tests
-Import/asset scan: no matches for motion, lucide-react, or Simple Icons URL; retained assets present; targeted ESLint passed; full lint blocked by unrelated `.agents` errors; `git diff --check` passed.
+Import/asset scan — command: `$patterns = @('from ["'']motion["'']','from ["'']lucide-react["'']','motion/','lucide-react','cdn\.simpleicons\.org','simple-icons'); $files = @('app','components','next.config.ts'); foreach ($p in $patterns) { Write-Output ("PATTERN: " + $p); rg -n -i $p $files; if ($LASTEXITCODE -eq 1) { Write-Output 'NO MATCHES' } }`; output: `PATTERN: from ["'']motion["'']` / `NO MATCHES`; `PATTERN: from ["'']lucide-react["'']` / `NO MATCHES`; `PATTERN: motion/` / `NO MATCHES`; `PATTERN: lucide-react` / `NO MATCHES`; `PATTERN: cdn\.simpleicons\.org` / `NO MATCHES`; `PATTERN: simple-icons` / `NO MATCHES`; exit 0.
+
+Targeted ESLint — command: `pnpm exec eslint app components next.config.ts`; output: no output; exit 0.
+
+Diff check — command: `git diff --check; if ($LASTEXITCODE -eq 0) { Write-Output 'git diff --check: PASS' }`; output: `git diff --check: PASS` (plus expected CRLF conversion warnings for package.json, pnpm-lock.yaml, and skills-lock.json); exit 0.
 
 ## Concerns
 Full `pnpm lint` reports 14 pre-existing errors and 7 warnings under `.agents/`; unrelated `skills-lock.json` and other worktree changes were preserved.
