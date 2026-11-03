@@ -18,7 +18,7 @@ const stackGroups = [
 export default function Home() {
   return (
     <main>
-      <header className="site-nav">
+      <header className="site-header">
         <nav aria-label="Primary navigation">
           <ul>
             <li><a href="#intro">Home</a></li>
@@ -34,9 +34,9 @@ export default function Home() {
         </div>
       </header>
 
-      <section className="hero section-shell" id="intro">
+      <section className="hero section" id="intro">
         <div className="hero-kicker"><span>Portfolio / 2026</span><span>Based in the Philippines</span></div>
-        <div className="hero-layout">
+        <div className="hero-layout section-grid">
           <div className="hero-content">
             <p className="eyebrow programmer-label" aria-label="PROGRAMMER"><span aria-hidden="true">P</span><span aria-hidden="true">R</span><span aria-hidden="true">O</span><span aria-hidden="true">G</span><span aria-hidden="true">R</span><span aria-hidden="true">A</span><span aria-hidden="true">M</span><span aria-hidden="true">M</span><span aria-hidden="true">E</span><span aria-hidden="true">R</span></p>
             <h1 className="hero-title">Full-stack <em>Web Developer</em></h1>
@@ -50,7 +50,7 @@ export default function Home() {
         <a className="scroll-cue" href="#background"><span>Scroll to explore</span><span aria-hidden="true">↓</span></a>
       </section>
 
-      <section className="section-shell split-section" id="background">
+      <section className="section split-section" id="background">
         <div className="section-label"><span>01</span><span>Background</span></div>
         <div className="section-body">
           <h2>I like making complex things feel <em>clear.</em></h2>
@@ -64,18 +64,18 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section-shell projects-section" id="projects">
+      <section className="section projects-section" id="projects">
         <div className="section-label"><span>02</span><span>Selected projects</span></div>
         <div className="section-body"><div className="section-heading-row"><h2>Made to be <em>useful.</em></h2><span className="project-count">03 / 03</span></div><ProjectList projects={projects} /></div>
       </section>
 
-      <section className="section-shell split-section stack-section" id="stack">
+      <section className="section split-section stack-section" id="stack">
         <div className="section-label"><span>03</span><span>Toolbox</span></div>
         <div className="section-body"><h2>Curious by default.<br /><em>Precise by practice.</em></h2><Toolbox groups={stackGroups} /></div>
       </section>
 
       <section className="contact-section" id="contact">
-        <div className="section-shell contact-inner">
+        <div className="section contact-inner">
           <div className="section-label"><span>04</span><span>Contact</span></div>
           <div className="contact-copy"><p className="eyebrow">Have a good problem?</p><h2>Let&apos;s make<br /><em>something matter.</em></h2><a className="button button-solid" href="mailto:valmores.karlmcjay@gmail.com">valmores.karlmcjay@gmail.com <span aria-hidden="true">↗</span></a><a className="phone-link" href="tel:+639628766984">+63 962 876 6984</a></div>
           <footer className="contact-footer"><span>Karley / Portfolio</span><div><a href="https://github.com/karmacje" target="_blank" rel="noreferrer">GitHub</a><a href="https://www.linkedin.com/in/krlmcjay" target="_blank" rel="noreferrer">LinkedIn</a><a href="https://www.credly.com/users/karl-mc-jay-valmores/badges/credly" target="_blank" rel="noreferrer">Credly</a></div><span>© 2026</span></footer>

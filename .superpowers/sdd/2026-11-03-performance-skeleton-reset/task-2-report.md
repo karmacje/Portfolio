@@ -1,4 +1,4 @@
-Status: Complete
-Commits: c88981a (style: reduce portfolio to flat CSS baseline)
-Tests: `pnpm exec eslint app/layout.tsx app/loading.tsx` passed; `git diff --check` passed; full `pnpm lint` failed on pre-existing errors under `.agents/skills/`; required rg scan returned `components/ProjectList.tsx` presentation class matches (`project-card`).
-Concerns: The required scan still reports `project-card` and `project-card-main` in the Task 1 component; only the three Task 2 source files were permitted to change, so those unrelated component classes remain.
+Status: Complete; review fixes align page sections with the flat baseline selectors and rename project presentation classes.
+Commits: c88981a (style: reduce portfolio to flat CSS baseline); ebb8c6b (fix: align flat baseline selectors)
+Tests: `pnpm exec eslint app/page.tsx app/layout.tsx app/loading.tsx components/ProjectList.tsx` passed; `git diff --check` passed; required rg scan reports no forbidden presentation-effect matches.
+Concerns: Full `pnpm lint` still fails on pre-existing errors under `.agents/skills/`.
