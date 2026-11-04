@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Utility with a pulse — CTA variants</title>
+    <style>
+      :root {
+        --sky: #74b0ff;
+        --white: #faf9f6;
+        --persimmon: #f4512c;
+        --ink: #111820;
+        --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+      }
+
+      * { box-sizing: border-box; }
+      html { background: var(--sky); }
+      body {
+        margin: 0;
+        color: var(--ink);
+        font-family: Arial, Helvetica, sans-serif;
+        line-height: 1.4;
+      }
+
+      header {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 32px 24px 12px;
+      }
+
+      h1, h2, p { margin: 0; }
+      h1 {
+        max-width: 760px;
+        font-size: clamp(42px, 8vw, 104px);
+        line-height: 0.9;
+        letter-spacing: -0.07em;
+      }
+
+      .intro {
+        display: flex;
+        justify-content: space-between;
+        gap: 24px;
+        margin-top: 28px;
+        font-size: 16px;
+      }
+
+      .intro p { max-width: 430px; }
+      .intro strong { color: var(--persimmon); }
+
+      main {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+        max-width: 1180px;
+        margin: 36px auto 80px;
+        padding: 0 24px;
+      }
+
+      .variant {
+        min-height: 300px;
+        padding: 28px;
+        background: var(--white);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .variant:nth-child(3),
+      .variant:nth-child(4),
+      .variant:nth-child(5) { background: var(--ink); color: var(--white); }
+
+      .variant h2 {
+        font-size: clamp(28px, 4vw, 50px);
+        line-height: 0.95;
+        letter-spacing: -0.055em;
+      }
+
+      .variant p {
+        max-width: 340px;
+        margin-top: 12px;
+        opacity: 0.72;
+      }
+
+      .variant footer {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 18px;
+        margin-top: 42px;
+      }
+
+      .variant-name {
+        color: var(--persimmon);
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      .cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 14px;
+        min-height: 48px;
+        padding: 12px 17px;
+        border: 0;
+        background: var(--persimmon);
+        color: var(--white);
+        font: inherit;
+        font-weight: 700;
+        text-decoration: none;
+        cursor: pointer;
+        transform: translateZ(0);
+        transition: transform 180ms var(--ease-out), background-color 180ms ease, color 180ms ease;
+      }
+
+      .cta:active { transform: scale(0.97); }
+
+      .signal {
+        display: block;
+        width: 23px;
+        height: 23px;
+        transition: transform 180ms var(--ease-out);
+      }
+
+      .cta:hover .signal { transform: translate(3px, -3px); }
+      .cta:hover { transform: scale(1.015); }
+
+      .cta--outline {
+        background: transparent;
+        color: var(--ink);
+        border: 2px solid currentColor;
+      }
+
+      .variant:nth-child(3) .cta--outline,
+      .variant:nth-child(4) .cta--outline,
+      .variant:nth-child(5) .cta--outline { color: var(--white); }
+
+      .cta--outline:hover { background: var(--persimmon); color: var(--white); border-color: var(--persimmon); }
+
+      .cta--node {
+        background: transparent;
+        color: inherit;
+        position: relative;
+        padding: 10px 14px;
+        isolation: isolate;
+      }
+
+      .cta--node .signal { color: var(--persimmon); }
+      .cta--node::before {
+        position: absolute;
+        z-index: -1;
+        inset: 0;
+        border: 1px solid var(--persimmon);
+        content: "";
+        clip-path: inset(0 100% 0 0);
+        transition: clip-path 180ms var(--ease-out);
+      }
+
+      .cta--node:hover { color: var(--persimmon); }
+      .cta--node:hover::before { clip-path: inset(0 0 0 0); }
+
+      .cta--split { padding: 0; background: var(--persimmon); }
+      .cta--split span { padding: 12px 0 12px 17px; }
+      .cta--split .signal { width: 48px; height: 48px; padding: 12px; background: var(--ink); }
+
+      .cta--stamp {
+        border-radius: 999px;
+        padding-inline: 21px;
+      }
+
+      .cta--stamp .signal { border: 1px solid currentColor; border-radius: 50%; padding: 3px; }
+
+      @media (hover: hover) and (pointer: fine) {
+        .cta:hover { transform: scale(1.015); }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+          scroll-behavior: auto !important;
+          transition-duration: 0.01ms !important;
+        }
+        .cta:hover, .cta:active, .cta:hover .signal { transform: none; }
+        .cta--node::before { transition: none; }
+      }
+
+      @media (max-width: 720px) {
+        header { padding-inline: 18px; }
+        .intro { display: block; }
+        .intro p + p { margin-top: 14px; }
+        main { grid-template-columns: 1fr; padding-inline: 18px; }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Utility with a pulse.</h1>
+      <div class="intro">
+        <p>Five CTA directions for Karley’s portfolio. Each uses the approved <strong>signal-path</strong> gesture and 180ms image-hover motion rule.</p>
+        <p>Hover, press, and keyboard-focus each option. Choose one by its variant name.</p>
+      </div>
+    </header>
+
+    <main>
+      <article class="variant">
+        <div>
+          <div class="variant-name">01 / Clear route</div>
+          <h2>Direct and decisive.</h2>
+          <p>The baseline system: flat persimmon, action-first language, and a compact route mark.</p>
+        </div>
+        <footer>
+          <span>Primary CTA</span>
+          <a class="cta" href="#clear-route">View projects <svg class="signal" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 20 20 4M9 4h11v11" stroke="currentColor" stroke-width="2.2" stroke-linecap="square"/></svg></a>
+        </footer>
+      </article>
+
+      <article class="variant">
+        <div>
+          <div class="variant-name">02 / Open frame</div>
+          <h2>Quiet confidence.</h2>
+          <p>An outlined action that lets the Sky Blue field and Soft White space do more of the talking.</p>
+        </div>
+        <footer>
+          <span>Secondary CTA</span>
+          <a class="cta cta--outline" href="#open-frame">Open case study <svg class="signal" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 20 20 4M9 4h11v11" stroke="currentColor" stroke-width="2.2" stroke-linecap="square"/></svg></a>
+        </footer>
+      </article>
+
+      <article class="variant">
+        <div>
+          <div class="variant-name">03 / Signal node</div>
+          <h2>Editorial, not ornamental.</h2>
+          <p>A text-led link where the square node becomes the only visual punctuation.</p>
+        </div>
+        <footer>
+          <span>Inline CTA</span>
+          <a class="cta cta--node" href="#signal-node">Contact me <svg class="signal" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 20 20 4M9 4h11v11" stroke="currentColor" stroke-width="2.2" stroke-linecap="square"/></svg></a>
+        </footer>
+      </article>
+
+      <article class="variant">
+        <div>
+          <div class="variant-name">04 / Split signal</div>
+          <h2>System meets warmth.</h2>
+          <p>A tactile two-part button: the label states the action, while the dark node carries the signal.</p>
+        </div>
+        <footer>
+          <span>Featured CTA</span>
+          <a class="cta cta--split" href="#split-signal"><span>Download CV</span><svg class="signal" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 20 20 4M9 4h11v11" stroke="currentColor" stroke-width="2.2" stroke-linecap="square"/></svg></a>
+        </footer>
+      </article>
+
+      <article class="variant">
+        <div>
+          <div class="variant-name">05 / Field stamp</div>
+          <h2>Friendly, but not soft.</h2>
+          <p>A rounded stamp reserved for one human moment: availability or a direct contact invitation.</p>
+        </div>
+        <footer>
+          <span>Contact CTA</span>
+          <a class="cta cta--stamp" href="mailto:valmores.karlmcjay@gmail.com">Let’s talk <svg class="signal" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 20 20 4M9 4h11v11" stroke="currentColor" stroke-width="2.2" stroke-linecap="square"/></svg></a>
+        </footer>
+      </article>
+    </main>
+  </body>
+</html>

@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "32a554b9d88f8f44",
+        "id": "f9986a13ff92231e",
         "type": "tabs",
         "children": [
           {
-            "id": "0fc4aa6f99d7bdfe",
+            "id": "4b9dcb6fd3eb45d8",
             "type": "leaf",
             "state": {
               "type": "graph",
@@ -181,8 +181,11 @@
       "bases:Create new base": false
     }
   },
-  "active": "0fc4aa6f99d7bdfe",
+  "active": "4b9dcb6fd3eb45d8",
   "lastOpenFiles": [
+    "portfolio-direction-variants.html",
+    "cta-motion-variants.html",
+    "Untitled.base",
     "node_modules/eslint-plugin-react/README.md",
     "node_modules/word-wrap/README.md"
   ]
