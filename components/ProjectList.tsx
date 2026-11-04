@@ -23,7 +23,6 @@ export default function ProjectList({ projects }: { projects: Project[] }) {
       {projects.map((project) => (
         <li key={project.number}>
           <article className="project-item">
-            <header className="project-number"><span>{project.number}</span><span aria-hidden="true">{project.suit}</span></header>
             <div className="project-item-main">
               <h3>{project.title}</h3>
               <p>{project.description}</p>

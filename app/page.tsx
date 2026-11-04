@@ -35,13 +35,13 @@ export default function Home() {
       </header>
 
       <section className="hero section" id="intro">
-        <div className="hero-kicker"><span>Portfolio / 2026</span><span>Based in the Philippines</span></div>
+        <div className="hero-kicker"><span>Karley Valmores</span><span>Based in the Philippines</span></div>
         <div className="hero-layout section-grid">
           <div className="hero-content">
-            <p className="eyebrow programmer-label" aria-label="PROGRAMMER"><span aria-hidden="true">P</span><span aria-hidden="true">R</span><span aria-hidden="true">O</span><span aria-hidden="true">G</span><span aria-hidden="true">R</span><span aria-hidden="true">A</span><span aria-hidden="true">M</span><span aria-hidden="true">M</span><span aria-hidden="true">E</span><span aria-hidden="true">R</span></p>
-            <h1 className="hero-title">Full-stack <em>Web Developer</em></h1>
+            <p className="eyebrow">Full-stack web developer</p>
+            <h1 className="hero-title">I make complex systems feel clear.</h1>
             <div className="hero-bottom">
-              <p className="hero-description">Thoughtful interfaces, useful systems, and digital experiences made to feel clear, capable, and human.</p>
+              <p className="hero-description">Thoughtful interfaces, useful systems, and digital experiences made to feel capable and human.</p>
               <div className="hero-actions"><a className="button button-solid" href="#projects">View projects <span aria-hidden="true">↘</span></a><a className="button button-outline" href="#contact">Contact me <span aria-hidden="true">↗</span></a></div>
             </div>
           </div>
@@ -51,9 +51,9 @@ export default function Home() {
       </section>
 
       <section className="section split-section" id="background">
-        <div className="section-label"><span>01</span><span>Background</span></div>
+        <div className="section-label">Background</div>
         <div className="section-body">
-          <h2>I like making complex things feel <em>clear.</em></h2>
+          <h2>I like making complex things feel clear.</h2>
           <p className="lead-copy">My work sits at the intersection of design, engineering, and the systems that keep people connected. I care about the small decisions that make technology easier to trust.</p>
           <dl className="facts-grid">
             <div><dt className="fact-label">Education</dt><dd><strong>BS Information Technology</strong><span>University of Science and Technology of Southern Philippines (USTP), Cagayan de Oro</span></dd></div>
@@ -65,19 +65,19 @@ export default function Home() {
       </section>
 
       <section className="section projects-section" id="projects">
-        <div className="section-label"><span>02</span><span>Selected projects</span></div>
-        <div className="section-body"><div className="section-heading-row"><h2>Made to be <em>useful.</em></h2><span className="project-count">03 / 03</span></div><ProjectList projects={projects} /></div>
+        <div className="section-label">Selected projects</div>
+        <div className="section-body"><div className="section-heading-row"><h2>Made to be useful.</h2><span className="project-count">Three projects</span></div><ProjectList projects={projects} /></div>
       </section>
 
       <section className="section split-section stack-section" id="stack">
-        <div className="section-label"><span>03</span><span>Toolbox</span></div>
-        <div className="section-body"><h2>Curious by default.<br /><em>Precise by practice.</em></h2><Toolbox groups={stackGroups} /></div>
+        <div className="section-label">Toolbox</div>
+        <div className="section-body"><h2>Curious by default.<br />Precise by practice.</h2><Toolbox groups={stackGroups} /></div>
       </section>
 
       <section className="contact-section" id="contact">
         <div className="section contact-inner">
-          <div className="section-label"><span>04</span><span>Contact</span></div>
-          <div className="contact-copy"><p className="eyebrow">Have a good problem?</p><h2>Let&apos;s make<br /><em>something matter.</em></h2><a className="button button-solid" href="mailto:valmores.karlmcjay@gmail.com">valmores.karlmcjay@gmail.com <span aria-hidden="true">↗</span></a><a className="phone-link" href="tel:+639628766984">+63 962 876 6984</a></div>
+          <div className="section-label">Contact</div>
+          <div className="contact-copy"><p className="eyebrow">Have a good problem?</p><h2>Let&apos;s make<br />something matter.</h2><a className="button button-solid" href="mailto:valmores.karlmcjay@gmail.com">valmores.karlmcjay@gmail.com <span aria-hidden="true">↗</span></a><a className="phone-link" href="tel:+639628766984">+63 962 876 6984</a></div>
           <footer className="contact-footer"><span>Karley / Portfolio</span><div><a href="https://github.com/karmacje" target="_blank" rel="noreferrer">GitHub</a><a href="https://www.linkedin.com/in/krlmcjay" target="_blank" rel="noreferrer">LinkedIn</a><a href="https://www.credly.com/users/karl-mc-jay-valmores/badges/credly" target="_blank" rel="noreferrer">Credly</a></div><span>© 2026</span></footer>
         </div>
       </section>
