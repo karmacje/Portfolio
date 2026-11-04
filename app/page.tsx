@@ -41,7 +41,7 @@ export default function Home() {
             <h1 className="hero-title">I build useful things.</h1>
             <div className="hero-bottom">
               <p className="hero-description">Thoughtful interfaces, useful systems, and digital experiences made to feel capable and human.</p>
-              <div className="hero-actions"><a className="button button-solid" href="#projects">View projects <span aria-hidden="true">↘</span></a><a className="button button-outline" href="#contact">Contact me <span aria-hidden="true">↗</span></a></div>
+              <div className="hero-actions"><a className="button button-outline" href="#contact">Contact me <span aria-hidden="true">↗</span></a></div>
             </div>
           </div>
           <div className="profile-frame"><ProfileCard /></div>
