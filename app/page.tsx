@@ -41,7 +41,7 @@ export default function Home() {
             <h1 className="hero-title">I build useful things.</h1>
             <div className="hero-bottom">
               <p className="hero-description">Thoughtful interfaces, useful systems, and digital experiences made to feel capable and human.</p>
-              <div className="hero-actions"><a className="button button-outline" href="#contact">Contact me <span aria-hidden="true">↗</span></a></div>
+              <div className="hero-actions"><a className="button button-outline" href="#contact">Contact me <span aria-hidden="true">✉</span></a></div>
             </div>
           </div>
           <div className="profile-frame"><ProfileCard /></div>
@@ -77,7 +77,7 @@ export default function Home() {
         <div className="section contact-inner">
           <div className="section-label">Contact</div>
           <div className="contact-copy"><p className="eyebrow">Have a good problem?</p><h2>Let&apos;s make<br />something matter.</h2><a className="button button-solid" href="mailto:valmores.karlmcjay@gmail.com">valmores.karlmcjay@gmail.com <span aria-hidden="true">↗</span></a><a className="phone-link" href="tel:+639628766984">+63 962 876 6984</a></div>
-          <footer className="contact-footer"><span>Karley / Portfolio</span><div><a href="https://github.com/karmacje" target="_blank" rel="noreferrer">GitHub</a><a href="https://www.linkedin.com/in/krlmcjay" target="_blank" rel="noreferrer">LinkedIn</a><a href="https://www.credly.com/users/karl-mc-jay-valmores/badges/credly" target="_blank" rel="noreferrer">Credly</a></div><span>© 2026</span></footer>
+          <footer className="contact-footer"><span className="footer-mark">krl</span><div><a href="https://github.com/karmacje" target="_blank" rel="noreferrer">GitHub</a><a href="https://www.linkedin.com/in/krlmcjay" target="_blank" rel="noreferrer">LinkedIn</a><a href="https://www.credly.com/users/karl-mc-jay-valmores/badges/credly" target="_blank" rel="noreferrer">Credly</a></div><span>© 2026</span></footer>
         </div>
       </section>
     </main>
