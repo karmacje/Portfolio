@@ -6,7 +6,6 @@ import Toolbox from "@/components/Toolbox";
 const projects: Project[] = [
   { number: "01", suit: "♠", title: "NMMC Queuing System", description: "A ticket management system for hospital patients, designed to make queue operations clearer and waiting more manageable.", tags: ["Next.js", "Prisma", "MySQL"], caseStudy: { context: "Built during my internship at Northern Mindanao Medical Center to support patient queuing and ticket management in a hospital setting.", problem: "Hospital teams needed a clearer way to organize patient tickets and keep queue progress manageable during daily operations.", role: "I built the queuing system's web experience and supporting data flows, working across the interface, application logic, and database integration.", stack: ["Next.js", "Prisma", "MySQL"], deploymentNote: "The system is hosted on NMMC's internal server for hospital use. It is not publicly reachable due to healthcare facility policy." } },
   { number: "02", suit: "♣", title: "Bantay Baboy", description: "An IoT monitoring experience that gives livestock caretakers a clearer view of what needs attention.", tags: ["React", "Supabase", "IoT"] },
-  { number: "03", suit: "♦", title: "Artificial Greenery", description: "A visual showcase site for discovering low-maintenance greenery that brings warmth into a space.", tags: ["Web Design", "Next.js", "Responsive UI"] },
 ];
 
 const stackGroups = [
@@ -66,7 +65,7 @@ export default function Home() {
 
       <section className="section projects-section" id="projects">
         <div className="section-label">Selected projects</div>
-        <div className="section-body"><div className="section-heading-row"><h2>Made to be useful.</h2><span className="project-count">Three projects</span></div><ProjectList projects={projects} /></div>
+        <div className="section-body"><div className="section-heading-row"><h2>Made to be useful.</h2><span className="project-count">Two projects</span></div><ProjectList projects={projects} /></div>
       </section>
 
       <section className="section split-section stack-section" id="stack">
