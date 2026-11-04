@@ -631,8 +631,6 @@ h2 em {
   gap: 1rem;
 }
 
-.hero-content > *,
-.profile-frame,
 .split-section .section-body,
 .projects-section .section-body,
 .stack-section .section-body,
@@ -643,21 +641,7 @@ h2 em {
   transition: opacity 500ms var(--ease-out), transform 500ms var(--ease-out);
 }
 
-.hero-content > *:nth-child(2) {
-  transition-delay: 60ms;
-}
-
-.hero-content > *:nth-child(3) {
-  transition-delay: 120ms;
-}
-
-.profile-frame {
-  transition-delay: 160ms;
-}
-
 @starting-style {
-  .hero-content > *,
-  .profile-frame,
   .split-section .section-body,
   .projects-section .section-body,
   .stack-section .section-body,
