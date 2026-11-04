@@ -18,9 +18,15 @@
 - [x] Remove the retained starter markup from the page source.
 - [x] Validate lint, TypeScript, and production build.
 
+## Phase 3: Contact details
+
+- [x] Add the provided email address.
+- [x] Add GitHub, LinkedIn, and Credly profile links.
+- [x] Add the provided phone number as a clickable contact link.
+
 ## Next phase, pending content
 
-- [ ] Replace placeholder profile links and email with final details.
 - [ ] Add real project URLs and project imagery where available.
 - [ ] Add Open Graph image and canonical production URL.
-- [ ] Review the page in desktop and mobile browsers, then tune spacing and content.
+- [x] Review the page at 1920px, 1080px, and 390px viewport widths with no horizontal overflow.
+- [ ] Tune spacing and content after the real project assets are available.
