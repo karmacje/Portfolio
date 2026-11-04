@@ -39,7 +39,7 @@ export default function Home() {
         <div className="hero-layout section-grid">
           <div className="hero-content">
             <p className="eyebrow">Full-stack web developer</p>
-            <h1 className="hero-title">I make complex systems feel clear.</h1>
+            <h1 className="hero-title">I build useful things.</h1>
             <div className="hero-bottom">
               <p className="hero-description">Thoughtful interfaces, useful systems, and digital experiences made to feel capable and human.</p>
               <div className="hero-actions"><a className="button button-solid" href="#projects">View projects <span aria-hidden="true">↘</span></a><a className="button button-outline" href="#contact">Contact me <span aria-hidden="true">↗</span></a></div>
@@ -53,7 +53,7 @@ export default function Home() {
       <section className="section split-section" id="background">
         <div className="section-label">Background</div>
         <div className="section-body">
-          <h2>I like making complex things feel clear.</h2>
+          <h2>I make complexity feel clear.</h2>
           <p className="lead-copy">My work sits at the intersection of design, engineering, and the systems that keep people connected. I care about the small decisions that make technology easier to trust.</p>
           <dl className="facts-grid">
             <div><dt className="fact-label">Education</dt><dd><strong>BS Information Technology</strong><span>University of Science and Technology of Southern Philippines (USTP), Cagayan de Oro</span></dd></div>
@@ -71,7 +71,7 @@ export default function Home() {
 
       <section className="section split-section stack-section" id="stack">
         <div className="section-label">Toolbox</div>
-        <div className="section-body"><h2>Curious by default.<br />Precise by practice.</h2><Toolbox groups={stackGroups} /></div>
+        <div className="section-body"><h2>Curious. Precise. Useful.</h2><Toolbox groups={stackGroups} /></div>
       </section>
 
       <section className="contact-section" id="contact">
