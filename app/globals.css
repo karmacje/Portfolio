@@ -919,7 +919,8 @@ h2 em {
 
   .profile-frame {
     grid-area: portrait;
-    max-width: none;
+    margin-inline: auto;
+    max-width: 24rem;
     width: 100%;
   }
 
@@ -996,6 +997,48 @@ h2 em {
 
   .contact-footer > span:last-child {
     text-align: right;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 760px) {
+  .profile img {
+    height: clamp(20rem, 42vw, 24rem);
+  }
+}
+
+@media (min-width: 761px) and (max-height: 500px) {
+  .hero {
+    min-height: auto;
+  }
+
+  .hero-layout {
+    align-items: start;
+    grid-template-areas:
+      "portrait"
+      "content";
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 1.5rem;
+  }
+
+  .profile-frame {
+    grid-area: portrait;
+    justify-self: center;
+    margin-inline: auto;
+    max-width: 24rem;
+    transform: none;
+    width: 100%;
+  }
+
+  .hero-content {
+    grid-area: content;
+    transform: none;
+  }
+
+  .profile img {
+    height: clamp(12rem, 50svh, 15rem);
+    max-height: none;
+    object-fit: cover;
+    object-position: center 16%;
   }
 }
 
