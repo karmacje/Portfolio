@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, type FocusEvent, type PointerEvent } from "react";
+import { useEffect, useRef, useState, type FocusEvent, type PointerEvent } from "react";
 
 const links = [
   { label: "Home", href: "#intro" },
@@ -13,6 +13,18 @@ const links = [
 export default function SiteNavigation() {
   const navRef = useRef<HTMLElement>(null);
   const indicatorRef = useRef<HTMLSpanElement>(null);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    function updateScrolledState() {
+      setIsScrolled(window.scrollY > 24);
+    }
+
+    updateScrolledState();
+    window.addEventListener("scroll", updateScrolledState, { passive: true });
+
+    return () => window.removeEventListener("scroll", updateScrolledState);
+  }, []);
 
   function showIndicator(link: HTMLAnchorElement) {
     const nav = navRef.current;
@@ -56,7 +68,7 @@ export default function SiteNavigation() {
   }
 
   return (
-    <header className="site-header">
+    <header className={`site-header${isScrolled ? " is-scrolled" : ""}`}>
       <nav
         ref={navRef}
         aria-label="Primary navigation"
