@@ -62,8 +62,8 @@ export default function Home() {
       <section className="contact-section" id="contact">
         <div className="section contact-inner">
           <div className="section-label">Contact</div>
-          <div className="contact-copy"><p className="eyebrow">Have a good problem?</p><h2>Let&apos;s make<br />something matter.</h2><a className="button button-solid" href="mailto:valmores.karlmcjay@gmail.com">valmores.karlmcjay@gmail.com <span aria-hidden="true">↗</span></a><a className="phone-link" href="tel:+639628766984">+63 962 876 6984</a></div>
-          <footer className="contact-footer"><span className="footer-mark">krl</span><div><a href="https://github.com/karmacje" target="_blank" rel="noreferrer">GitHub</a><a href="https://www.linkedin.com/in/krlmcjay" target="_blank" rel="noreferrer">LinkedIn</a><a href="https://www.credly.com/users/karl-mc-jay-valmores/badges/credly" target="_blank" rel="noreferrer">Credly</a></div><span>© 2026</span></footer>
+          <div className="contact-copy"><p className="eyebrow">Have a good problem?</p><h2>Let&apos;s make<br />something matter.</h2><a className="button button-solid" href="mailto:valmores.karlmcjay@gmail.com">Email me <span aria-hidden="true">↗</span></a><a className="email-address" href="mailto:valmores.karlmcjay@gmail.com">valmores.karlmcjay@gmail.com</a><a className="phone-link" href="tel:+639628766984">+63 962 876 6984</a></div>
+          <footer className="contact-footer"><a className="footer-mark" href="#intro" aria-label="Back to top">krl</a><nav className="footer-socials" aria-label="Social links"><a href="https://github.com/karmacje" target="_blank" rel="noreferrer">GitHub</a><a href="https://www.linkedin.com/in/krlmcjay" target="_blank" rel="noreferrer">LinkedIn</a><a href="https://www.credly.com/users/karl-mc-jay-valmores/badges/credly" target="_blank" rel="noreferrer">Credly</a></nav><span>© 2026</span></footer>
         </div>
       </section>
     </main>
