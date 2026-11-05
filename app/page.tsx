@@ -1,6 +1,7 @@
 import CertificationBadges from "@/components/CertificationBadges";
 import ProfileCard from "@/components/ProfileCard";
 import ProjectList, { type Project } from "@/components/ProjectList";
+import SiteNavigation from "@/components/SiteNavigation";
 import Toolbox from "@/components/Toolbox";
 
 const projects: Project[] = [
@@ -17,24 +18,9 @@ const stackGroups = [
 export default function Home() {
   return (
     <main>
-      <header className="site-header">
-        <nav aria-label="Primary navigation">
-          <ul>
-            <li><a href="#intro">Home</a></li>
-            <li><a href="#background">Background</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#stack">Stack</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </nav>
-        <div className="nav-actions">
-          <a className="nav-cv" href="/Valmores_CV.pdf" target="_blank" rel="noreferrer">CV</a>
-          <a className="nav-status" href="mailto:valmores.karlmcjay@gmail.com"><span className="status-dot" /> Available for work</a>
-        </div>
-      </header>
+      <SiteNavigation />
 
       <section className="hero section" id="intro">
-        <div className="hero-kicker"><span>Karley Valmores</span><span>Based in the Philippines</span></div>
         <div className="hero-layout section-grid">
           <div className="hero-content">
             <p className="eyebrow">Full-stack web developer</p>
