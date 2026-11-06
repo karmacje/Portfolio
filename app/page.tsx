@@ -17,55 +17,64 @@ const stackGroups = [
 
 export default function Home() {
   return (
-    <main>
+    <>
       <SiteNavigation />
-
-      <section className="hero section" id="intro">
-        <div className="hero-layout section-grid">
-          <div className="hero-content">
-            <p className="eyebrow">Full-stack web developer</p>
-            <h1 className="hero-title">I build useful things.</h1>
-            <div className="hero-bottom">
-              <p className="hero-description">Thoughtful interfaces, useful systems, and digital experiences made to feel capable and human.</p>
-              <div className="hero-actions"><a className="button button-outline" href="#contact">Contact me <span aria-hidden="true">✉</span></a></div>
+      <main>
+        <section className="hero section" id="intro">
+          <div className="hero-layout section-grid">
+            <div className="hero-content">
+              <p className="eyebrow">Full-stack web developer</p>
+              <h1 className="hero-title">I build useful things.</h1>
+              <div className="hero-bottom">
+                <p className="hero-description">Thoughtful interfaces, useful systems, and digital experiences made to feel capable and human.</p>
+                <div className="hero-actions"><a className="button button-outline" href="#contact">Contact me <span aria-hidden="true">✉</span></a></div>
+              </div>
             </div>
+            <div className="profile-frame"><ProfileCard /></div>
           </div>
-          <div className="profile-frame"><ProfileCard /></div>
-        </div>
-        <a className="scroll-cue" href="#background"><span>Scroll to explore</span><span aria-hidden="true">↓</span></a>
-      </section>
+          <a className="scroll-cue" href="#background"><span>Scroll to explore</span><span aria-hidden="true">↓</span></a>
+        </section>
 
-      <section className="section split-section" id="background">
-        <div className="section-label">Background</div>
-        <div className="section-body">
-          <h2>I make complexity feel clear.</h2>
-          <p className="lead-copy">My work sits at the intersection of design, engineering, and the systems that keep people connected. I care about the small decisions that make technology easier to trust.</p>
-          <dl className="facts-grid">
-            <div><dt className="fact-label">Education</dt><dd><strong>BS Information Technology</strong><span>University of Science and Technology of Southern Philippines (USTP), Cagayan de Oro</span></dd></div>
-            <div><dt className="fact-label">Focus</dt><dd><strong>Full-stack &amp; mobile development</strong><span>IoT, networking &amp; cybersecurity</span></dd></div>
-            <div><dt className="fact-label">Experience</dt><dd><strong>NMMC Queuing System</strong><span>Internship / product development</span></dd></div>
-          </dl>
-          <div className="certifications"><span className="fact-label">Certifications</span><CertificationBadges /></div>
-        </div>
-      </section>
+        <section className="section split-section" id="background">
+          <div className="section-label">Background</div>
+          <div className="section-body">
+            <h2>I make complexity feel clear.</h2>
+            <p className="lead-copy">My work sits at the intersection of design, engineering, and the systems that keep people connected. I care about the small decisions that make technology easier to trust.</p>
+            <dl className="facts-grid">
+              <div><dt className="fact-label">Education</dt><dd><strong>BS Information Technology</strong><span>University of Science and Technology of Southern Philippines (USTP), Cagayan de Oro</span></dd></div>
+              <div><dt className="fact-label">Focus</dt><dd><strong>Full-stack &amp; mobile development</strong><span>IoT, networking &amp; cybersecurity</span></dd></div>
+              <div><dt className="fact-label">Experience</dt><dd><strong>NMMC Queuing System</strong><span>Internship / product development</span></dd></div>
+            </dl>
+            <div className="certifications"><span className="fact-label">Certifications</span><CertificationBadges /></div>
+          </div>
+        </section>
 
-      <section className="section projects-section" id="projects">
-        <div className="section-label">Selected projects</div>
-        <div className="section-body"><div className="section-heading-row"><h2>Made to be useful.</h2><span className="project-count">Two projects</span></div><ProjectList projects={projects} /></div>
-      </section>
+        <section className="section projects-section" id="projects">
+          <div className="section-label">Selected projects</div>
+          <div className="section-body"><div className="section-heading-row"><h2>Made to be useful.</h2><span className="project-count">Two projects</span></div><ProjectList projects={projects} /></div>
+        </section>
 
-      <section className="section split-section stack-section" id="stack">
-        <div className="section-label">Toolbox</div>
-        <div className="section-body"><h2>Curious. Precise. Useful.</h2><Toolbox groups={stackGroups} /></div>
-      </section>
+        <section className="section split-section stack-section" id="stack">
+          <div className="section-label">Toolbox</div>
+          <div className="section-body"><h2>Curious. Precise. Useful.</h2><Toolbox groups={stackGroups} /></div>
+        </section>
 
-      <section className="contact-section" id="contact">
-        <div className="section contact-inner">
-          <div className="section-label">Contact</div>
-          <div className="contact-copy"><p className="eyebrow">Have a good problem?</p><h2>Let&apos;s make<br />something matter.</h2><a className="button button-solid" href="mailto:valmores.karlmcjay@gmail.com">Email me <span aria-hidden="true">↗</span></a><a className="email-address" href="mailto:valmores.karlmcjay@gmail.com">valmores.karlmcjay@gmail.com</a><a className="phone-link" href="tel:+639628766984">+63 962 876 6984</a></div>
-          <footer className="contact-footer"><a className="footer-mark" href="#intro" aria-label="Back to top">krl</a><nav className="footer-socials" aria-label="Social links"><a href="https://github.com/karmacje" target="_blank" rel="noreferrer">GitHub</a><a href="https://www.linkedin.com/in/krlmcjay" target="_blank" rel="noreferrer">LinkedIn</a><a href="https://www.credly.com/users/karl-mc-jay-valmores/badges/credly" target="_blank" rel="noreferrer">Credly</a></nav><span>© 2026</span></footer>
-        </div>
-      </section>
-    </main>
+        <section className="contact-section" id="contact">
+          <div className="section contact-inner">
+            <div className="section-label">Contact</div>
+            <div className="contact-copy"><p className="eyebrow">Have a good problem?</p><h2>Let&apos;s make<br />something matter.</h2><a className="button button-solid" href="mailto:valmores.karlmcjay@gmail.com">Email me <span aria-hidden="true">↗</span></a><a className="email-address" href="mailto:valmores.karlmcjay@gmail.com">valmores.karlmcjay@gmail.com</a><a className="phone-link" href="tel:+639628766984">+63 962 876 6984</a></div>
+          </div>
+        </section>
+      </main>
+      <footer className="contact-footer section">
+        <a className="footer-mark" href="#intro" aria-label="Back to top">krl</a>
+        <nav className="footer-socials" aria-label="Social links">
+          <a href="https://github.com/karmacje" target="_blank" rel="noreferrer">GitHub</a>
+          <a href="https://www.linkedin.com/in/krlmcjay" target="_blank" rel="noreferrer">LinkedIn</a>
+          <a href="https://www.credly.com/users/karl-mc-jay-valmores/badges/credly" target="_blank" rel="noreferrer">Credly</a>
+        </nav>
+        <span>© 2026</span>
+      </footer>
+    </>
   );
 }
