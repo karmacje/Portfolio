@@ -6,6 +6,7 @@
   --ink: #10233f;
   --muted: #53627a;
   --blue: #245fa8;
+  --blue-light: #438ef2;
   --frame: 1220px;
   --gutter: clamp(1.25rem, 3.2vw, 3rem);
   --section-space: clamp(5rem, 10vw, 9rem);
@@ -178,7 +179,23 @@ ul {
 .menu-icon span {
   background: currentColor;
   height: 2px;
+  transform-origin: center;
+  transition:
+    transform 180ms var(--ease-out),
+    opacity 120ms var(--ease-out);
   width: 100%;
+}
+
+.menu-icon.is-open span:first-child {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.menu-icon.is-open span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-icon.is-open span:last-child {
+  transform: translateY(-6px) rotate(-45deg);
 }
 
 .nav-actions {
@@ -360,89 +377,92 @@ h2 em {
   gap: 0.8rem;
 }
 
-.button {
+.magnetic-button {
   align-items: center;
+  background: var(--surface);
   border: 1px solid var(--ink);
+  border-radius: 999px;
+  color: var(--ink);
+  cursor: pointer;
   display: inline-flex;
   font-size: var(--meta);
-  gap: 1rem;
+  gap: 0.8rem;
+  isolation: isolate;
   justify-content: space-between;
   min-height: 3.2rem;
+  max-width: 100%;
+  overflow: hidden;
   padding: 0.8rem 1rem;
   position: relative;
-  border-radius: 999px;
   text-decoration: none;
-  transition: transform 140ms var(--ease-out), color 180ms var(--ease-out), background-color 180ms var(--ease-out);
 }
 
-.button::before {
-  border: 1px solid var(--blue);
-  border-radius: inherit;
-  box-shadow: 0 0 0 rgba(67, 142, 242, 0);
+.magnetic-button::before {
+  background: radial-gradient(
+    circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(255, 255, 255, 0.4) 0%,
+    transparent 60%
+  );
   content: "";
-  inset: -1px;
-  pointer-events: none;
-  position: absolute;
-  clip-path: inset(0 100% 0 0 round 999px);
-  transition: clip-path 180ms var(--ease-out), box-shadow 180ms var(--ease-out);
-}
-
-.button:focus-visible::before {
-  box-shadow: 0 0 1.25rem rgba(67, 142, 242, 0.28);
-  clip-path: inset(0 0 0 0);
-}
-
-.button::after {
-  background: rgba(67, 142, 242, 0.28);
-  border-radius: inherit;
-  content: "";
-  filter: blur(0.9rem);
-  inset: -0.45rem;
+  inset: 0;
   opacity: 0;
   pointer-events: none;
   position: absolute;
   transition: opacity 180ms var(--ease-out);
-  z-index: -1;
+  z-index: 0;
 }
 
-.button:active {
-  transform: scale(0.97);
+.magnetic-button__label,
+.magnetic-button__icon {
+  position: relative;
+  z-index: 1;
 }
 
-.button-solid {
+.magnetic-button__icon {
+  display: inline-flex;
+  flex: 0 0 1.1rem;
+  height: 1.1rem;
+  width: 1.1rem;
+}
+
+.magnetic-button__icon svg {
+  height: 100%;
+  width: 100%;
+}
+
+.magnetic-button--solid {
   background: var(--blue);
   border-color: var(--blue);
   color: var(--surface);
 }
 
-.button-outline {
-  background: var(--surface);
-  border-color: transparent;
-}
-
-.button span {
-  position: relative;
-  z-index: 1;
-  transition: transform 180ms var(--ease-out);
-}
-
-.button:focus-visible span {
-  transform: translate(3px, -3px);
+.magnetic-button--contact {
+  transition:
+    background-color 180ms var(--ease-out),
+    border-color 180ms var(--ease-out),
+    color 180ms var(--ease-out);
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .button:hover::before {
-    box-shadow: 0 0 1.25rem rgba(67, 142, 242, 0.36);
-    clip-path: inset(0 0 0 0 round 999px);
-  }
-
-  .button:hover::after {
+  .magnetic-button:hover::before {
     opacity: 1;
   }
 
-  .button:hover span {
-    transform: translate(3px, -3px);
+  .magnetic-button--contact:hover {
+    background: var(--blue-light);
+    border-color: var(--blue-light);
+    color: var(--ink);
   }
+}
+
+.magnetic-button--contact:focus-visible {
+  background: var(--blue-light);
+  border-color: var(--blue-light);
+  color: var(--ink);
+}
+
+.magnetic-button:focus-visible::before {
+  opacity: 1;
 }
 
 .profile-frame {
@@ -724,9 +744,6 @@ h2 em {
   cursor: pointer;
   font-size: var(--meta);
   list-style: none;
-  text-decoration: underline;
-  text-decoration-thickness: 0.08em;
-  text-underline-offset: 0.25em;
 }
 
 .project-item summary::-webkit-details-marker {
@@ -821,7 +838,7 @@ h2 em {
   max-width: 10ch;
 }
 
-.contact-copy .button {
+.contact-copy .contact-cta {
   margin-top: 3rem;
 }
 
@@ -1158,7 +1175,7 @@ h2 em {
     border-radius: 0;
     box-shadow: none;
     gap: 0;
-    padding: 0.35rem var(--gutter);
+    padding: 0.75rem var(--gutter) 0.6rem;
   }
 
   .site-header nav {
@@ -1173,6 +1190,32 @@ h2 em {
     flex-wrap: wrap;
     gap: 0.15rem clamp(0.55rem, 2vw, 0.85rem);
     justify-content: center;
+  }
+
+  .site-header nav ul > li:not(.mobile-menu-utilities) {
+    transition:
+      transform 160ms var(--ease-in-out),
+      opacity 140ms var(--ease-out);
+  }
+
+  .site-header nav ul > li:nth-child(1) {
+    transition-delay: 0ms;
+  }
+
+  .site-header nav ul > li:nth-child(2) {
+    transition-delay: 30ms;
+  }
+
+  .site-header nav ul > li:nth-child(3) {
+    transition-delay: 60ms;
+  }
+
+  .site-header nav ul > li:nth-child(4) {
+    transition-delay: 90ms;
+  }
+
+  .site-header nav ul > li:nth-child(5) {
+    transition-delay: 120ms;
   }
 
   .nav-actions {
@@ -1190,34 +1233,60 @@ h2 em {
     justify-content: flex-end;
   }
 
-  .site-header.is-scrolled nav ul {
-    display: none;
+  .site-header .nav-menu-button {
+    display: inline-flex;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+    top: 50%;
   }
 
   .site-header.is-scrolled .nav-menu-button {
-    display: inline-flex;
+    pointer-events: auto;
+    z-index: 12;
   }
 
   .site-header.is-scrolled .nav-actions {
     display: none;
   }
 
+  .site-header.is-scrolled nav ul {
+    transition: visibility 0s linear 280ms;
+    visibility: hidden;
+  }
+
+  .site-header.is-scrolled nav ul > li:not(.mobile-menu-utilities) {
+    opacity: 0;
+    transform: translate3d(100px, -20px, 0) scale(0.8);
+  }
+
   .site-header.is-scrolled.is-menu-open nav ul {
     align-items: stretch;
-    background: var(--ground);
+    background: color-mix(in srgb, var(--surface) 68%, transparent);
+    backdrop-filter: blur(24px) saturate(1.25);
+    border-bottom: 1px solid rgb(255 255 255 / 28%);
     display: flex;
     flex-direction: column;
-    gap: 0;
+    gap: 0.65rem;
     left: calc(-1 * var(--gutter));
-    padding: 0.5rem var(--gutter) 0.75rem;
+    padding: 0.75rem var(--gutter) 1rem;
     position: absolute;
     right: calc(-1 * var(--gutter));
     top: calc(100% + 0.35rem);
+    transition-delay: 0ms;
+    visibility: visible;
     z-index: 11;
   }
 
+  .site-header.is-scrolled.is-menu-open nav ul > li:not(.mobile-menu-utilities) {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
   .site-header.is-scrolled.is-menu-open nav ul a {
-    min-height: 44px;
+    min-height: 48px;
+    padding-block: 0.5rem;
     width: 100%;
   }
 
@@ -1260,7 +1329,7 @@ h2 em {
     padding-top: 1.5rem;
   }
 
-  .contact-copy .button {
+  .contact-copy .contact-cta {
     margin-top: 1.5rem;
     min-height: 44px;
   }
@@ -1300,9 +1369,17 @@ h2 em {
     transition-duration: 0.01ms !important;
   }
 
-  .profile img,
-  .button span {
+  .profile img {
     transform: none !important;
+  }
+
+  .site-header.is-scrolled nav ul {
+    transition-delay: 0ms;
+  }
+
+  .site-header.is-scrolled nav ul > li:not(.mobile-menu-utilities) {
+    transform: none;
+    transition-delay: 0ms;
   }
 }
 
@@ -1313,14 +1390,21 @@ h2 em {
     box-shadow: none;
   }
 
-  .button,
+  .site-header.is-scrolled.is-menu-open nav ul {
+    background: var(--ground);
+    backdrop-filter: none;
+    border-bottom-color: currentColor;
+  }
+
+  .magnetic-button,
   .certification-badge {
     border: 2px solid currentColor;
   }
 }
 
 @media (prefers-reduced-transparency: reduce) {
-  .site-header.is-scrolled {
+  .site-header.is-scrolled,
+  .site-header.is-scrolled.is-menu-open nav ul {
     background: var(--ground);
     backdrop-filter: none;
   }

@@ -1,4 +1,5 @@
 import CertificationBadges from "@/components/CertificationBadges";
+import MagneticButton from "@/components/MagneticButton";
 import ProfileCard from "@/components/ProfileCard";
 import ProjectList, { type Project } from "@/components/ProjectList";
 import SiteNavigation from "@/components/SiteNavigation";
@@ -27,7 +28,7 @@ export default function Home() {
               <h1 className="hero-title">I build useful things.</h1>
               <div className="hero-bottom">
                 <p className="hero-description">Thoughtful interfaces, useful systems, and digital experiences made to feel capable and human.</p>
-                <div className="hero-actions"><a className="button button-outline" href="#contact">Contact me <span aria-hidden="true">✉</span></a></div>
+                <div className="hero-actions"><MagneticButton className="magnetic-button--contact" href="#contact">Contact me</MagneticButton></div>
               </div>
             </div>
             <div className="profile-frame"><ProfileCard /></div>
@@ -62,7 +63,7 @@ export default function Home() {
         <section className="contact-section" id="contact">
           <div className="section contact-inner">
             <div className="section-label">Contact</div>
-            <div className="contact-copy"><p className="eyebrow">Have a good problem?</p><h2>Let&apos;s make<br />something matter.</h2><a className="button button-solid" href="mailto:valmores.karlmcjay@gmail.com">Email me <span aria-hidden="true">↗</span></a><a className="email-address" href="mailto:valmores.karlmcjay@gmail.com">valmores.karlmcjay@gmail.com</a><a className="phone-link" href="tel:+639628766984">+63 962 876 6984</a></div>
+            <div className="contact-copy"><p className="eyebrow">Have a good problem?</p><h2>Let&apos;s make<br />something matter.</h2><MagneticButton className="contact-cta" href="mailto:valmores.karlmcjay@gmail.com" variant="solid">Email me</MagneticButton><a className="email-address" href="mailto:valmores.karlmcjay@gmail.com">valmores.karlmcjay@gmail.com</a><a className="phone-link" href="tel:+639628766984">+63 962 876 6984</a></div>
           </div>
         </section>
       </main>

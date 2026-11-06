@@ -4,10 +4,17 @@ import {
   useEffect,
   useRef,
   useState,
+  useSyncExternalStore,
   type FocusEvent,
   type KeyboardEvent,
   type PointerEvent,
 } from "react";
+import {
+  motion,
+  useMotionValueEvent,
+  useReducedMotion,
+  useScroll,
+} from "motion/react";
 
 const links = [
   { label: "Home", href: "#intro" },
@@ -17,26 +24,96 @@ const links = [
   { label: "Contact", href: "#contact" },
 ];
 
+const mobileViewportQuery = "(max-width: 760px)";
+
+function subscribeToMobileViewport(callback: () => void) {
+  const mediaQuery = window.matchMedia(mobileViewportQuery);
+  mediaQuery.addEventListener("change", callback);
+
+  return () => mediaQuery.removeEventListener("change", callback);
+}
+
+function getMobileViewportSnapshot() {
+  return window.matchMedia(mobileViewportQuery).matches;
+}
+
+function getMobileViewportServerSnapshot() {
+  return false;
+}
+
 export default function SiteNavigation() {
   const navRef = useRef<HTMLElement>(null);
   const indicatorRef = useRef<HTMLSpanElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const scrolledStateRef = useRef(false);
+  const focusAfterScrollRef = useRef<"menu" | "inline-link" | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const isMobileViewport = useSyncExternalStore(
+    subscribeToMobileViewport,
+    getMobileViewportSnapshot,
+    getMobileViewportServerSnapshot,
+  );
+  const { scrollY } = useScroll();
+  const shouldReduceMotion = useReducedMotion() ?? false;
+  const showMenuButton = isMobileViewport && isScrolled;
+  const hideInlineLinks = showMenuButton && !isMenuOpen;
 
   useEffect(() => {
-    function updateScrolledState() {
-      const scrolled = window.scrollY > 8;
-      setIsScrolled(scrolled);
+    const mobileViewport = window.matchMedia(mobileViewportQuery);
 
-      if (!scrolled) setIsMenuOpen(false);
+    function closeMenuOnDesktop(event: MediaQueryListEvent) {
+      if (!event.matches) {
+        if (document.activeElement === menuButtonRef.current) {
+          focusAfterScrollRef.current = "inline-link";
+        }
+
+        setIsMenuOpen(false);
+      }
     }
 
-    updateScrolledState();
-    window.addEventListener("scroll", updateScrolledState, { passive: true });
+    mobileViewport.addEventListener("change", closeMenuOnDesktop);
 
-    return () => window.removeEventListener("scroll", updateScrolledState);
+    return () => mobileViewport.removeEventListener("change", closeMenuOnDesktop);
   }, []);
+
+  useEffect(() => {
+    const focusTarget = focusAfterScrollRef.current;
+
+    if (focusTarget === "menu" && showMenuButton) {
+      focusAfterScrollRef.current = null;
+      menuButtonRef.current?.focus();
+    } else if (focusTarget === "inline-link" && !showMenuButton) {
+      focusAfterScrollRef.current = null;
+      navRef.current
+        ?.querySelector<HTMLAnchorElement>("#primary-navigation-links a")
+        ?.focus();
+    }
+  }, [showMenuButton]);
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    const scrolled =
+      latest >= 50 || (scrolledStateRef.current && latest > 45);
+
+    if (scrolledStateRef.current === scrolled) return;
+
+    if (
+      scrolled &&
+      isMobileViewport &&
+      navRef.current
+        ?.querySelector<HTMLUListElement>("#primary-navigation-links")
+        ?.contains(document.activeElement)
+    ) {
+      focusAfterScrollRef.current = "menu";
+    } else if (!scrolled && document.activeElement === menuButtonRef.current) {
+      focusAfterScrollRef.current = "inline-link";
+    }
+
+    scrolledStateRef.current = scrolled;
+    setIsScrolled(scrolled);
+
+    if (!scrolled) setIsMenuOpen(false);
+  });
 
   function showIndicator(link: HTMLAnchorElement) {
     const nav = navRef.current;
@@ -99,7 +176,10 @@ export default function SiteNavigation() {
         }}
         onBlurCapture={handleBlur}
       >
-        <ul id="primary-navigation-links">
+        <ul
+          id="primary-navigation-links"
+          inert={hideInlineLinks}
+        >
           {links.map(({ label, href }) => (
             <li key={href}>
               <a
@@ -123,22 +203,39 @@ export default function SiteNavigation() {
           </li>
         </ul>
         <span ref={indicatorRef} className="nav-indicator" aria-hidden="true" />
-        <button
+        <motion.button
           ref={menuButtonRef}
           className="nav-menu-button"
           type="button"
           aria-controls="primary-navigation-links"
           aria-expanded={isMenuOpen}
           aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+          inert={!showMenuButton}
+          tabIndex={showMenuButton ? 0 : -1}
           onClick={() => setIsMenuOpen((open) => !open)}
+          initial={false}
+          animate={{
+            opacity: showMenuButton ? 1 : 0,
+            transform: `translate3d(0, 0, 0) scale(${shouldReduceMotion || showMenuButton ? 1 : 0.5})`,
+          }}
+          transition={
+            shouldReduceMotion
+              ? { duration: 0.18, ease: "easeOut" }
+              : showMenuButton
+                ? { type: "spring", duration: 0.5, bounce: 0.2 }
+                : { duration: 0.18, ease: "easeOut" }
+          }
         >
-          <span className="menu-icon" aria-hidden="true">
+          <span
+            className={isMenuOpen ? "menu-icon is-open" : "menu-icon"}
+            aria-hidden="true"
+          >
             <span />
             <span />
             <span />
           </span>
-          <span>{isMenuOpen ? "Close" : "Menu"}</span>
-        </button>
+          {!isMenuOpen && <span>Menu</span>}
+        </motion.button>
       </nav>
       <div className="nav-actions">
         <a className="nav-cv" href="/Valmores_CV.pdf" target="_blank" rel="noreferrer">

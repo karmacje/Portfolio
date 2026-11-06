@@ -1,3 +1,5 @@
+import MagneticButton from "@/components/MagneticButton";
+
 export type CaseStudy = {
   context: string;
   problem: string;
@@ -34,7 +36,7 @@ export default function ProjectList({ projects }: { projects: Project[] }) {
                 {(project.liveUrl || project.repoUrl) && <nav className="project-links" aria-label={`${project.title} links`}>{project.liveUrl && <a href={project.liveUrl} target="_blank" rel="noreferrer">Live demo <span aria-hidden="true">↗</span></a>}{project.repoUrl && <a href={project.repoUrl} target="_blank" rel="noreferrer">Repository <span aria-hidden="true">↗</span></a>}</nav>}
                 {project.caseStudy && (
                   <details>
-                    <summary>View Case Study <span aria-hidden="true">↘</span></summary>
+                    <MagneticButton as="summary">View Case Study</MagneticButton>
                     <dl className="case-study-content">
                       <div><dt>Context</dt><dd>{project.caseStudy.context}</dd></div>
                       <div><dt>Problem</dt><dd>{project.caseStudy.problem}</dd></div>
